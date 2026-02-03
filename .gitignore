@@ -1,0 +1,28 @@
+# Python / General
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment Variables (Keep this secret!)
+.env
+
+# Documentation (Internal)
+ROADMAP.md
+
+# Database (Local user data)
+questlog.db
+*.sqlite3
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
