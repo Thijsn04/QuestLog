@@ -1,0 +1,254 @@
+/*
+   QuestLog - Core Styles
+*/
+
+:root {
+    /* Shared Structure */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --backdrop-blur: 12px;
+    --transition-speed: 0.3s;
+}
+
+/* THEME: Cyberpunk (Default) */
+body, body.theme-cyberpunk {
+    --primary-color: #00f2ff;       /* Cyan */
+    --secondary-color: #7000ff;     /* Purple */
+    --accent-color: #ff0055;        /* Pink/Red */
+
+    --bg-dark: #0a0a12;
+    --bg-panel: rgba(20, 20, 35, 0.7);
+    --bg-input: rgba(255, 255, 255, 0.05);
+
+    --text-main: #ffffff;
+    --text-muted: #a0a0b0;
+
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    --glow-primary: 0 0 20px rgba(0, 242, 255, 0.3);
+
+    --bg-gradient: radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                   radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
+}
+
+/* THEME: Zen Garden */
+body.theme-zen {
+    --primary-color: #768752;       /* Moss Green */
+    --secondary-color: #a4b494;     /* Sage */
+    --accent-color: #d6985a;        /* Sand */
+
+    --bg-dark: #f0f2eb;             /* Off-white paper */
+    --bg-panel: rgba(255, 255, 255, 0.8);
+    --bg-input: rgba(0, 0, 0, 0.03);
+
+    --text-main: #2c3628;           /* Dark Green/Grey */
+    --text-muted: #6c7c64;
+
+    --border-color: rgba(0, 0, 0, 0.05);
+
+    --glow-primary: 0 4px 20px rgba(118, 135, 82, 0.15);
+
+    --bg-gradient: linear-gradient(120deg, #f0f2eb 0%, #e6e9e1 100%);
+}
+
+/* THEME: Minimalist */
+body.theme-minimalist {
+    --primary-color: #000000;
+    --secondary-color: #333333;
+    --accent-color: #666666;
+
+    --bg-dark: #ffffff;
+    --bg-panel: #ffffff;
+    --bg-input: #f5f5f5;
+
+    --text-main: #000000;
+    --text-muted: #666666;
+
+    --border-color: #eeeeee;
+
+    --glow-primary: none;
+
+    --bg-gradient: none;
+}
+
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: var(--bg-gradient);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 2rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(112, 0, 255, 0.3);
+}
+
+p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Layout */
+header {
+    padding: 1.5rem 0;
+    backdrop-filter: blur(var(--backdrop-blur));
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+/* Components: Cards */
+.card, .onboarding-container {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    backdrop-filter: blur(var(--backdrop-blur));
+    transition: transform var(--transition-speed);
+}
+
+/* Components: Forms */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-size: 1.1rem;
+    transition: all var(--transition-speed);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--glow-primary);
+    color: var(--text-main);
+}
+
+/* Components: Buttons */
+button {
+    cursor: pointer;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-speed);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+button[type="submit"] {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: #fff;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-primary);
+}
+
+/* AI Button Specifics */
+button.ai-magic {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    width: auto;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+
+button.ai-magic:hover {
+    background: rgba(0, 242, 255, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.onboarding-container {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Loader */
+.htmx-indicator {
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+}
+.htmx-request .htmx-indicator{
+    opacity: 1;
+}
+.htmx-request.htmx-indicator{
+    opacity: 1;
+}
+
+/* Progress Ring Style Update */
+.progress-ring {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 4px solid var(--bg-input);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glow-primary);
+}

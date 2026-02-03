@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Start Your Journey | QuestLog{% endblock %}
+
+{% block content %}
+<div class="onboarding-container">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h2>Welcome, Hero.</h2>
+        <p>Every great adventure begins with a single step. What is your destination?</p>
+    </div>
+
+    <form hx-post="/api/onboarding/submit" hx-swap="outerHTML">
+        <div>
+            <label for="goal">Your Main Quest</label>
+            <input type="text" id="goal" name="goal" placeholder="e.g. Become a Marathon Runner" required>
+        </div>
+
+        <div style="text-align: right;">
+            <button type="button" class="ai-magic"
+                    hx-post="/api/ai/suggest-goal"
+                    hx-include="[name='goal']"
+                    hx-target="#goal"
+                    hx-swap="outerHTML"
+                    hx-indicator="#ai-spinner">
+                <span id="ai-spinner" class="htmx-indicator">✨ </span>Quest Idea
+            </button>
+        </div>
+
+        <div>
+            <label for="deadline">Target Deadline</label>
+            <input type="date" id="deadline" name="deadline">
+        </div>
+
+        <button type="submit">Begin Adventure</button>
+    </form>
+</div>
+{% endblock %}

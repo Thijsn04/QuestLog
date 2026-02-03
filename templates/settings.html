@@ -1,0 +1,96 @@
+<div class="card settings-container">
+    <h2>Settings</h2>
+
+    <form hx-post="/api/settings/update" hx-swap="none">
+        <label>Theme</label>
+        <div class="theme-switcher">
+            <button class="theme-btn {% if theme == 'cyberpunk' %}active{% endif %}"
+                    type="button"
+                    onclick="document.body.className='theme-cyberpunk'; setInput('cyberpunk')">
+                🔮 Cyberpunk
+            </button>
+            <button class="theme-btn {% if theme == 'zen' %}active{% endif %}"
+                    type="button"
+                    onclick="document.body.className='theme-zen'; setInput('zen')">
+                🎋 Zen Garden
+            </button>
+            <button class="theme-btn {% if theme == 'minimalist' %}active{% endif %}"
+                    type="button"
+                    onclick="document.body.className='theme-minimalist'; setInput('minimalist')">
+                📄 Minimalist
+            </button>
+        </div>
+
+        <!-- Hidden input to store chosen theme for submission -->
+        <input type="hidden" name="theme_name" id="theme_input" value="{{ theme }}">
+
+        <div style="margin-top: 2rem;">
+            <label for="hero_name">Hero Name</label>
+            <input type="text" id="hero_name" name="hero_name" value="{{ hero_name }}" placeholder="Your Name">
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+            <a href="/" class="btn-secondary" style="text-decoration: none; padding: 1rem 2rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-main);">
+                &larr; Back
+            </a>
+            <button type="submit">Save Settings</button>
+        </div>
+    </form>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+        <h3 style="color: var(--accent-color);">Danger Zone</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Resetting will delete all your quests and progress. This cannot be undone.</p>
+
+        <div style="display: flex; gap: 1rem;">
+            <a href="/api/settings/export" target="_blank"
+               style="text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--primary-color); border-radius: var(--radius-sm); color: var(--primary-color); font-size: 0.9rem; display: inline-flex; align-items: center;">
+                💾 Export Data (JSON)
+            </a>
+
+            <button hx-post="/api/settings/reset"
+                    hx-confirm="Are you sure you want to delete everything and start over?"
+                    style="background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);">
+                ⚠️ Reset All Data
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setInput(themeVal) {
+        document.getElementById('theme_input').value = themeVal;
+        // visual selection update
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
+
+<style>
+    .theme-switcher {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .theme-btn {
+        flex: 1;
+        background: var(--bg-input);
+        border: 1px solid var(--border-color);
+        color: var(--text-muted);
+        min-width: 120px;
+    }
+    .theme-btn.active {
+        background: var(--bg-input);
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        box-shadow: var(--glow-primary);
+    }
+    .theme-btn:hover {
+        background: var(--bg-input);
+        color: var(--text-main);
+    }
+    .theme-btn.locked {
+        opacity: 0.5;
+        cursor: not-allowed;
+        border-style: dashed;
+    }
+</style>
