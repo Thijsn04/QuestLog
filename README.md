@@ -73,7 +73,3 @@ Open your browser and navigate to:
 ## 🤝 Contributing
 
 Contributions are welcome! Pull requests are great, but for major changes, please open an issue first to discuss what you would like to change.
-
-## 📄 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
